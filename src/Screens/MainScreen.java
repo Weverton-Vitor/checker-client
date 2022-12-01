@@ -1,12 +1,15 @@
+package Screens;
+
+import client.Client;
+
 import javax.swing.*;
-import javax.swing.border.AbstractBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import javax.swing.*;
-import javax.swing.border.*;
+import java.io.IOException;
+import java.util.concurrent.ExecutionException;
 
 public class MainScreen extends JFrame{
     private JTextField codeTextField;
@@ -15,6 +18,8 @@ public class MainScreen extends JFrame{
     private JButton criaSalaButton;
 
     private String roomCode;
+
+    private Client player;
 
     public MainScreen() {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -41,8 +46,35 @@ public class MainScreen extends JFrame{
         });
 
 
+        criaSalaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Click");
+                try {
+                    if (player == null){ // Criando a primera sala ao entrar no jogo
+                        Client player = new Client();
+                        player = player;
+                        close();
+                        final LoadingScreen loadingFrame = new LoadingScreen();
+                        loadingFrame.render(); // Renderizando a tela de espera por outro jogador
 
 
+
+                        System.out.println("Code: " + player.getCodeSession());
+                    } else {
+                        //TODO criar sala depois de "logado"
+                    }
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                } catch (ClassNotFoundException ex) {
+                    throw new RuntimeException(ex);
+                } catch (ExecutionException ex) {
+                    throw new RuntimeException(ex);
+                } catch (InterruptedException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
     }
 
     public static void main(String[] args) {
@@ -53,6 +85,10 @@ public class MainScreen extends JFrame{
         mainScreen.setVisible(true);
         mainScreen.setDefaultCloseOperation(EXIT_ON_CLOSE);
         mainScreen.setLayout(mainScreen.getLayout());
+    }
+
+    public void close(){
+        this.dispose();
     }
 
 }
