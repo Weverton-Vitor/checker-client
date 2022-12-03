@@ -55,8 +55,11 @@ public class MainScreen extends JFrame{
                         Client player = new Client();
                         player = player;
                         close();
-                        final LoadingScreen loadingFrame = new LoadingScreen();
-                        loadingFrame.render(); // Renderizando a tela de espera por outro jogador
+//                        final LoadingScreen loadingFrame = new LoadingScreen();
+//                        loadingFrame.render(); // Renderizando a tela de espera por outro jogador
+
+                        final JanelaPrincipal loadingFrame = new JanelaPrincipal();
+//                        loadingFrame.startGame();
 
 
 

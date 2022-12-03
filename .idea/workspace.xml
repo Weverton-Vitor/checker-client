@@ -2,9 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c264c6e1-dacf-4485-86ea-2b29492583da" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/imagens/bispo_branco.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/imagens/bispo_preto.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/imagens/cavalo_branco.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/imagens/cavalo_preto.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/imagens/peao_preto.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/imagens/pedra_branca.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/imagens/rainha_branca.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/imagens/rainha_preta.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/imagens/rei_branco.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/imagens/rei_preto.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/imagens/torre_branca.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/imagens/torre_preta.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainScreen.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/Screens/MainScreen.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Screens/MainScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Screens/LoadingScreen.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/Screens/LoadingScreen.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Screens/LoadingScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Screens/LoadingScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Screens/MainScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Screens/MainScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/Client.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,16 +44,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH": "224",
+    "last_opened_file_path": "C:/projectsjava/CheckerClient/imagens"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\projectsjava\CheckerClient\imagens" />
+      <recent name="C:\projectsjava\CheckerClient\src\imagens" />
+      <recent name="C:\projectsjava\CheckerClient\src" />
       <recent name="C:\projectsjava\CheckerClient\src\Screens" />
+      <recent name="C:\projectsjava\CheckerClient\src\Pieces" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\projectsjava\CheckerClient\imagens" />
+      <recent name="C:\projectsjava\CheckerClient\src\Screens" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="Game" />
+      <recent name="Screens" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Screens.MainScreen">
@@ -127,13 +155,23 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Screens/MainScreen.java</url>
-          <line>55</line>
-          <option name="timeStamp" value="4" />
+          <line>60</line>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/client/Client.java</url>
-          <line>21</line>
-          <option name="timeStamp" value="6" />
+          <url>file://$PROJECT_DIR$/src/Screens/SquareGUI.java</url>
+          <line>75</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Screens/SquareGUI.java</url>
+          <line>71</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Screens/SquareGUI.java</url>
+          <line>30</line>
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

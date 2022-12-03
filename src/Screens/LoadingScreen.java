@@ -2,9 +2,11 @@ package Screens;
 
 import javax.swing.*;
 import java.awt.*;
+import java.net.URL;
 
 public class LoadingScreen extends JFrame {
     private JPanel loadingScreen;
+    private JLabel loadingGif;
 
     public LoadingScreen() throws HeadlessException {
 
@@ -18,5 +20,11 @@ public class LoadingScreen extends JFrame {
         loadingScreen.setVisible(true);
         loadingScreen.setDefaultCloseOperation(EXIT_ON_CLOSE);
         loadingScreen.setLayout(loadingScreen.getLayout());
+
+
+    }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
     }
 }

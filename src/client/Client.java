@@ -26,6 +26,17 @@ public class Client {
 //    task.start();
   }
 
+  public Client(String codeSession) throws ExecutionException, InterruptedException {
+    this.codeSession = codeSession;
+
+    ExecutorService executor = Executors.newCachedThreadPool();
+    ConnectSessionCallable task = new ConnectSessionCallable(this, this.codeSession); // task callable que retorna o código da sala
+    Future future = executor.submit(task);
+    Message response = (Message) future.get(); // Obtendo a mensagem do servidor
+//    setCodeSession(response.getCodeSession());
+    System.out.println(response.getAction());
+  }
+
   public String getCodeSession() {
     return codeSession;
   }
