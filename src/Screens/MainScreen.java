@@ -44,21 +44,17 @@ public class MainScreen extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 try {
                     if (player == null){ // Criando a primera sala ao entrar no jogo
-                        Client player1 = new Client(roomCode);
-                        player = player1;
+                        player = new Client();
+                        player.connectSession(roomCode);
+
+                        final JanelaPrincipal loadingFrame = new JanelaPrincipal(player);
                         close();
-//                        final LoadingScreen loadingFrame = new LoadingScreen();
-//                        loadingFrame.render(); // Renderizando a tela de espera por outro jogador
-
-                        final JanelaPrincipal loadingFrame = new JanelaPrincipal();
-//                        loadingFrame.startGame();
-
-
-
                         System.out.println("Code: " + player.getCodeSession());
                     } else {
                         //TODO criar sala depois de "logado"
                     }
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
                 } catch (ExecutionException ex) {
                     throw new RuntimeException(ex);
                 } catch (InterruptedException ex) {
@@ -79,24 +75,17 @@ public class MainScreen extends JFrame{
                 System.out.println("Click");
                 try {
                     if (player == null){ // Criando a primera sala ao entrar no jogo
-                        Client player = new Client();
-                        player = player;
-                        close();
-//                        final LoadingScreen loadingFrame = new LoadingScreen();
-//                        loadingFrame.render(); // Renderizando a tela de espera por outro jogador
+                        player = new Client();
+                        player.createSession();
 
-                        final JanelaPrincipal loadingFrame = new JanelaPrincipal();
-//                        loadingFrame.startGame();
-
-
+                        final JanelaPrincipal loadingFrame = new JanelaPrincipal(player);
 
                         System.out.println("Code: " + player.getCodeSession());
+                        close();
                     } else {
-                        //TODO criar sala depois de "logado"
+                        player.createSession();
                     }
                 } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                } catch (ClassNotFoundException ex) {
                     throw new RuntimeException(ex);
                 } catch (ExecutionException ex) {
                     throw new RuntimeException(ex);

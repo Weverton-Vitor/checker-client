@@ -1,10 +1,12 @@
 package Screens;
 
 import Game.Game;
+import client.Client;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Tela do jogo.
@@ -16,6 +18,8 @@ import java.awt.event.ActionListener;
 public class JanelaPrincipal extends JFrame {
 
   private Game jogo;
+
+  private Client player;
   private boolean primeiroClique;
   private SquareGUI casaClicadaOrigem;
   private SquareGUI casaClicadaDestino;
@@ -25,7 +29,7 @@ public class JanelaPrincipal extends JFrame {
    * 
    * @param casaClicada Casa que o jogador clicou.
    */
-  public void reagir(SquareGUI casaClicada) {
+  public void reagir(SquareGUI casaClicada) throws ExecutionException, InterruptedException {
     if (primeiroClique) {
       if (casaClicada.possuiPeca()) {
         casaClicadaOrigem = casaClicada;
@@ -39,6 +43,10 @@ public class JanelaPrincipal extends JFrame {
     }
     else {
       casaClicadaDestino = casaClicada;
+
+      this.player.move(casaClicadaOrigem.getPosicaoX(), casaClicadaOrigem.getPosicaoY(),
+              casaClicadaDestino.getPosicaoX(), casaClicadaDestino.getPosicaoY());
+
       jogo.moverPeca(casaClicadaOrigem.getPosicaoX(), casaClicadaOrigem.getPosicaoY(),
               casaClicadaDestino.getPosicaoX(), casaClicadaDestino.getPosicaoY());
       casaClicadaOrigem.atenuar();
@@ -51,7 +59,8 @@ public class JanelaPrincipal extends JFrame {
   /**
    * Construtor da classe.
    */
-  public JanelaPrincipal() {
+  public JanelaPrincipal(Client player) {
+    this.player = player;
     initComponents();
 
     this.primeiroClique = true;
@@ -263,12 +272,12 @@ public class JanelaPrincipal extends JFrame {
   /**
    * @param args the command line arguments
    */
-  public static void startGame() {
+  public static void startGame(Client player) {
 
     /* Create and display the form */
     java.awt.EventQueue.invokeLater(new Runnable() {
       public void run() {
-        new JanelaPrincipal().setVisible(true);
+        new JanelaPrincipal(player).setVisible(true);
       }
     });
   }

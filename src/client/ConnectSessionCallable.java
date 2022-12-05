@@ -9,11 +9,13 @@ package client;
         import java.util.concurrent.Callable;
 
 public class ConnectSessionCallable implements Callable {
-    private Client player;
+    private ObjectOutputStream out;
+    private ObjectInputStream in;
     private String codeSession;
 
-    public ConnectSessionCallable(Client player, String codeSession) {
-        this.player = player;
+    public ConnectSessionCallable(ObjectOutputStream out, ObjectInputStream in, String codeSession) {
+        this.out = out;
+        this.in = in;
         this.codeSession = codeSession;
     }
 
@@ -21,19 +23,13 @@ public class ConnectSessionCallable implements Callable {
     @Override
     public Object call() throws Exception {
         try {
-            // Conecatando ao servidor
-            Socket s = new Socket("127.0.0.1", 54323);
-            ObjectOutputStream out = new ObjectOutputStream(s.getOutputStream());
-            ObjectInputStream in = new ObjectInputStream(s.getInputStream());
-
             // Criando obejto de mensagem com a ação de criar uma sala
             Message msgConnection = new Message();
             msgConnection.setAction("CONNECT_SESSION");
             msgConnection.setCodeSession(this.codeSession);
+            System.out.println(this.codeSession);
             out.writeObject(msgConnection);
             Message response = (Message) in.readObject();
-            this.player.setSocket(s); // passando o socket para o objeto do player
-//            s.close();
             return response;
         } catch (IOException | ClassNotFoundException e) {
             throw new RuntimeException(e);
@@ -41,11 +37,4 @@ public class ConnectSessionCallable implements Callable {
 
     }
 
-    public Client getPlayer() {
-        return player;
-    }
-
-    public void setPlayer(Client player) {
-        this.player = player;
-    }
 }

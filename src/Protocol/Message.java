@@ -7,8 +7,20 @@ public class Message implements Serializable {
     private String color;
     private String codeSession;
 
+    private int origemX;
+    private int origemY;
+    private int destinoX;
+    private int destinoY;
+
 
     public Message() {
+    }
+
+    public Message(int origemX, int origemY, int destinoX, int destinoY) {
+        this.origemX = origemX;
+        this.origemY = origemY;
+        this.destinoX = destinoX;
+        this.destinoY = destinoY;
     }
 
     public String getAction() {
@@ -33,5 +45,37 @@ public class Message implements Serializable {
 
     public void setCodeSession(String codeSession) {
         this.codeSession = codeSession;
+    }
+
+    public int getOrigemX() {
+        return origemX;
+    }
+
+    public void setOrigemX(int origemX) {
+        this.origemX = origemX;
+    }
+
+    public int getOrigemY() {
+        return origemY;
+    }
+
+    public void setOrigemY(int origemY) {
+        this.origemY = origemY;
+    }
+
+    public int getDestinoX() {
+        return destinoX;
+    }
+
+    public void setDestinoX(int destinoX) {
+        this.destinoX = destinoX;
+    }
+
+    public int getDestinoY() {
+        return destinoY;
+    }
+
+    public void setDestinoY(int destinoY) {
+        this.destinoY = destinoY;
     }
 }

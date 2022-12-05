@@ -9,27 +9,24 @@ import java.net.Socket;
 import java.util.concurrent.Callable;
 
 public class CreateSessionCallable implements Callable {
-    private Client player;
 
-    public CreateSessionCallable(Client player) {
-        this.player = player;
+    private ObjectOutputStream out;
+    private ObjectInputStream in;
+
+    public CreateSessionCallable(ObjectOutputStream out, ObjectInputStream in) {
+        this.out = out;
+        this.in = in;
     }
 
 
     @Override
     public Object call() throws Exception {
         try {
-            // Conecatando ao servidor
-            Socket s = new Socket("192.188.0.16", 54323);
-            ObjectOutputStream out = new ObjectOutputStream(s.getOutputStream());
-            ObjectInputStream in = new ObjectInputStream(s.getInputStream());
-
             // Criando obejto de mensagem com a ação de criar uma sala
             Message msgConnection = new Message();
             msgConnection.setAction("CREATE_SESSION");
             out.writeObject(msgConnection);
             Message response = (Message) in.readObject();
-            this.player.setSocket(s); // passando o socket para o objeto do player
 //            s.close();
             return response;
         } catch (IOException | ClassNotFoundException e) {
@@ -38,11 +35,4 @@ public class CreateSessionCallable implements Callable {
 
     }
 
-    public Client getPlayer() {
-        return player;
-    }
-
-    public void setPlayer(Client player) {
-        this.player = player;
-    }
 }

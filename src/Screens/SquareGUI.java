@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
@@ -55,7 +56,13 @@ public class SquareGUI extends JButton {
     addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        tabuleiro.getJanela().reagir((SquareGUI) e.getSource());
+        try {
+          tabuleiro.getJanela().reagir((SquareGUI) e.getSource());
+        } catch (ExecutionException ex) {
+          throw new RuntimeException(ex);
+        } catch (InterruptedException ex) {
+          throw new RuntimeException(ex);
+        }
       }
     });
   }

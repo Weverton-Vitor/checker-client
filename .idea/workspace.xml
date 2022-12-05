@@ -3,7 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="c264c6e1-dacf-4485-86ea-2b29492583da" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Protocol/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Protocol/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Screens/JanelaPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Screens/JanelaPrincipal.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Screens/MainScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Screens/MainScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Screens/SquareGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Screens/SquareGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/ConnectSessionCallable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/ConnectSessionCallable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/client/CreateSessionCallable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/CreateSessionCallable.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -69,7 +74,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Screens.MainScreen" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="Screens.MainScreen" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Screens.MainScreen" />
       <module name="CheckerClient" />
       <extension name="coverage">
@@ -95,6 +100,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.MainScreen" />
+      <item itemvalue="Application.MainScreen (4)" />
+      <item itemvalue="Application.MainScreen (5)" />
+      <item itemvalue="Application.Screens.MainScreen" />
+      <item itemvalue="Application.Teste" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Screens.MainScreen" />
@@ -131,23 +143,18 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Screens/MainScreen.java</url>
-          <line>87</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Screens/SquareGUI.java</url>
-          <line>75</line>
+          <line>82</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Screens/SquareGUI.java</url>
-          <line>71</line>
+          <line>78</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Screens/SquareGUI.java</url>
-          <line>30</line>
+          <line>31</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
