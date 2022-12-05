@@ -1,9 +1,11 @@
 package Game;
 
-import Pieces.Cor;
+import Pieces.Color;
 import Pieces.Piece;
 
-public class Square {
+import java.io.Serializable;
+
+public class Square implements Serializable {
 
   private int x;
   private int y;
@@ -27,7 +29,7 @@ public class Square {
    */
   public void removerPiece(Table table) {
     // Decrementando a contagem de pecas
-    if(peca.getColor() == Cor.BLACK){
+    if(peca.getColor() == Color.BLACK){
       table.setTotalBlack(table.getTotalBlack() - 1);
     } else {
       table.setTotalWhite(table.getTotalWhite() - 1);

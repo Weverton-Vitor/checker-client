@@ -1,13 +1,14 @@
 package Game;
 
-import Pieces.Cor;
+import Pieces.Color;
 import Pieces.Dame;
 import Pieces.Piece;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
-public class Table {
+public class Table implements Serializable {
   private Piece[][] table;
   private Square[][] squares;
   private Hashtable<Integer, Piece> pieces = new Hashtable<>();
@@ -54,8 +55,8 @@ public class Table {
     return blackRound;
   }
 
-  public Cor corTurno() {
-    return blackRound ? Cor.BLACK : Cor.WHITE;
+  public Color corTurno() {
+    return blackRound ? Color.BLACK : Color.WHITE;
   }
 
   public void setBlackRound(boolean blackRound) {

@@ -1,6 +1,6 @@
 package Game;
 
-import Pieces.Cor;
+import Pieces.Color;
 import Pieces.Pawn;
 
 /**
@@ -35,7 +35,7 @@ public class Game {
           j++;
         }
         Square casa = tabuleiro.getSquare(j, i);
-        new Pawn(casa, Cor.BLACK);
+        new Pawn(casa, Color.BLACK);
       }
     }
   }
@@ -47,7 +47,7 @@ public class Game {
           j++;
         }
         Square casa = tabuleiro.getSquare(j, i);
-        new Pawn(casa, Cor.WHITE);
+        new Pawn(casa, Color.WHITE);
       }
     }
   }

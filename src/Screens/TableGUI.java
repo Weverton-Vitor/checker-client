@@ -6,10 +6,9 @@ import Game.Table;
 import Pieces.Dame;
 import Pieces.Pawn;
 import Pieces.Piece;
-import Pieces.Cor;
+import Pieces.Color;
 
 import javax.swing.*;
-import java.awt.*;
 
 /**
  * Interface Grafica do Tabuleiro do jogo.
@@ -44,7 +43,7 @@ public class TableGUI extends JPanel {
     for (int y = 7; y >= 0; y--) {
       // Da esquerda para a direita
       for (int x = 0; x < 8; x++) {
-        Color cor = calcularCor(x, y);
+        java.awt.Color cor = calcularCor(x, y);
         SquareGUI casa = new SquareGUI(x, y, cor, this);
         casas[x][y] = casa;
         add(casa);
@@ -52,7 +51,7 @@ public class TableGUI extends JPanel {
     }
   }
 
-  private Color calcularCor(int x, int y) {
+  private java.awt.Color calcularCor(int x, int y) {
     // linha par
     if (x % 2 == 0) {
       // coluna �mpar
@@ -91,15 +90,15 @@ public class TableGUI extends JPanel {
           Piece peca = casa.getPiece();
 
           if (peca instanceof Pawn) {
-            if (peca.getColor() == Cor.WHITE) {
+            if (peca.getColor() == Color.WHITE) {
               casaGUI.desenharPedraBranca();
-            } else if (peca.getColor() == Cor.BLACK) {
+            } else if (peca.getColor() == Color.BLACK) {
               casaGUI.desenharPedraPreta();
             }
           } else if (peca instanceof Dame) {
-            if (peca.getColor() == Cor.WHITE) {
+            if (peca.getColor() == Color.WHITE) {
               casaGUI.desenharDamaBranca();
-            } else if (peca.getColor() == Cor.BLACK) {
+            } else if (peca.getColor() == Color.BLACK) {
               casaGUI.desenharDamaPreta();
             }
           }

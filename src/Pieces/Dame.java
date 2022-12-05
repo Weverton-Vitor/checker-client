@@ -3,10 +3,11 @@ package Pieces;
 import Game.Square;
 import Game.Table;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Dame extends Piece {
-  public Dame(Square casa, Cor cor) {
+public class Dame extends Piece implements Serializable {
+  public Dame(Square casa, Color cor) {
     super(casa, cor);
   }
 

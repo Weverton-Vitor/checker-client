@@ -3,20 +3,21 @@ package Pieces;
 import Game.Square;
 import Game.Table;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class Piece {
+public abstract class Piece implements Serializable {
   protected Square casa;
   protected Square casaDeCaptura;
   protected int moves;
-  protected Cor color;
+  protected Color color;
 
   abstract boolean couldPromote();
   abstract void promote();
   abstract public boolean isAllowedPosition(Square destino, Table tabuleiro);
 
   // # Substituir tipo por cor
-  public Piece(Square casa, Cor cor) {
+  public Piece(Square casa, Color cor) {
     this.casa = casa;
     this.color = cor;
     this.moves = 0;
@@ -38,7 +39,7 @@ public abstract class Piece {
       this.moves += 1;
 
 
-      if (this.color == Cor.BLACK) {
+      if (this.color == Color.BLACK) {
         System.out.println("Peça vermelha foi movida");
       } else {
         System.out.println("Peça branca foi movida");
@@ -58,7 +59,7 @@ public abstract class Piece {
           tabuleiro.toggleTurno();
         }
 
-        if ((this.color == Cor.BLACK) && aindaPodeCapturar) {
+        if ((this.color == Color.BLACK) && aindaPodeCapturar) {
           System.out.println("Peça branca pode se mover novamente");
         } else if(aindaPodeCapturar) {
           System.out.println("Peça branca pode se mover novamente");
@@ -75,12 +76,12 @@ public abstract class Piece {
   /**
    * @return a cor da peca.
    */
-  public Cor getColor() {
+  public Color getColor() {
     return this.color;
   }
 
   public boolean ehBranca() {
-    return this.color == Cor.WHITE;
+    return this.color == Color.WHITE;
   }
 
   public boolean ehMesmaColor(Piece peca) {

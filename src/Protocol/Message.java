@@ -1,5 +1,7 @@
 package Protocol;
 
+import Game.Table;
+
 import java.io.Serializable;
 
 public class Message implements Serializable {
@@ -11,6 +13,8 @@ public class Message implements Serializable {
     private int origemY;
     private int destinoX;
     private int destinoY;
+
+    private Table table;
 
 
     public Message() {
@@ -77,5 +81,13 @@ public class Message implements Serializable {
 
     public void setDestinoY(int destinoY) {
         this.destinoY = destinoY;
+    }
+
+    public Table getTable() {
+        return table;
+    }
+
+    public void setTable(Table table) {
+        this.table = table;
     }
 }

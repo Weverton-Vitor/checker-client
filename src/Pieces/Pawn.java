@@ -3,15 +3,17 @@ package Pieces;
 import Game.Square;
 import Game.Table;
 
-public class Pawn extends Piece {
+import java.io.Serializable;
+
+public class Pawn extends Piece implements Serializable {
   public int deltaMovement;
   public int deltaStole; // ATENÇÃO WEVERTON
   public int promoteOnY; // ATENÇÃO WEVERTON
 
-  public Pawn(Square casa, Cor cor) {
+  public Pawn(Square casa, Color cor) {
     super(casa, cor);
     this.deltaStole = 2;
-    if (cor == Cor.WHITE) {
+    if (cor == Color.WHITE) {
       this.deltaMovement = 1;
       this.promoteOnY = 7;
     } else {

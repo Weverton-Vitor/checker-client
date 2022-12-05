@@ -53,6 +53,7 @@ public class Client {
     MovePieceCallable task = new MovePieceCallable(out, in, this.codeSession, origemX, origemY, destinoX, destinoX); // task callable que retorna o código da sala
     Future future = this.pool.submit(task);
     Message response = (Message) future.get(); // Obtendo a mensagem do servidor
+    System.out.println(response.getTable());
   }
 
 
