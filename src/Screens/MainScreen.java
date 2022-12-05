@@ -1,5 +1,6 @@
 package Screens;
 
+import Protocol.Message;
 import client.Client;
 
 import javax.swing.*;
@@ -41,7 +42,33 @@ public class MainScreen extends JFrame{
         entrarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Enviando: " + roomCode);
+                try {
+                    if (player == null){ // Criando a primera sala ao entrar no jogo
+                        Client player1 = new Client(roomCode);
+                        player = player1;
+                        close();
+//                        final LoadingScreen loadingFrame = new LoadingScreen();
+//                        loadingFrame.render(); // Renderizando a tela de espera por outro jogador
+
+                        final JanelaPrincipal loadingFrame = new JanelaPrincipal();
+//                        loadingFrame.startGame();
+
+
+
+                        System.out.println("Code: " + player.getCodeSession());
+                    } else {
+                        //TODO criar sala depois de "logado"
+                    }
+                } catch (ExecutionException ex) {
+                    throw new RuntimeException(ex);
+                } catch (InterruptedException ex) {
+                    throw new RuntimeException(ex);
+                }
+                // System.out.println("Enviando: " + roomCode);
+                // Message message = new Message();
+                // message.setAction("CONNECT_SESSION");
+                // message.setCodeSession(roomCode);
+                // player.
             }
         });
 

@@ -20,7 +20,7 @@ public class CreateSessionCallable implements Callable {
     public Object call() throws Exception {
         try {
             // Conecatando ao servidor
-            Socket s = new Socket("127.0.0.1", 54323);
+            Socket s = new Socket("192.188.0.16", 54323);
             ObjectOutputStream out = new ObjectOutputStream(s.getOutputStream());
             ObjectInputStream in = new ObjectInputStream(s.getInputStream());
 
