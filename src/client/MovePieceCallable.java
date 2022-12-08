@@ -40,11 +40,16 @@ public class MovePieceCallable implements Callable {
             System.out.println("Movendo");
             System.out.println(origemX + " " + origemY + " " + destinoX + " " +destinoY);
 
-            // Conecatando ao servidor
+            // Conectando ao servidor
 //            ObjectOutputStream out = new ObjectOutputStream(playerSocket.getOutputStream());
 //            ObjectInputStream in = new ObjectInputStream(playerSocket.getInputStream());
+<<<<<<< action-move
             // Criando obejto de mensagem com a ação de criar uma sala
             Message msgConnection = new Message(origemX, origemY, destinoX, destinoY);
+=======
+            // Criando objeto de mensagem com a ação de criar uma sala
+            Message msgConnection = new Message(origemX, origemY, destinoX, destinoX);
+>>>>>>> master
             msgConnection.setAction("MOVE");
             msgConnection.setCodeSession(this.codeSession);
             msgConnection.setColor(this.color);

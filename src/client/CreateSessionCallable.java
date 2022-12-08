@@ -22,7 +22,7 @@ public class CreateSessionCallable implements Callable {
     @Override
     public Object call() throws Exception {
         try {
-            // Criando obejto de mensagem com a ação de criar uma sala
+            // Criando objeto de mensagem com a ação de criar uma sala
             Message msgConnection = new Message();
             msgConnection.setAction("CREATE_SESSION");
             out.writeObject(msgConnection);

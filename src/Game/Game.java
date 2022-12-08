@@ -19,8 +19,8 @@ public class Game {
   }
   
   /**
-   * Posiciona pe�as no tabuleiro.
-   * Utilizado na inicializa�ao do jogo.
+   * Posiciona peças no tabuleiro.
+   * Utilizado na inicialização do jogo.
    */
   private void criarPecas() {
     this.criarPecasPretas();   
@@ -53,7 +53,7 @@ public class Game {
   }
   
   /**
-   * Comanda uma Pe�a na posicao (origemX, origemY) fazer um movimento 
+   * Comanda uma Peça na posicao (origemX, origemY) fazer um movimento 
    * para (destinoX, destinoY).
    * 
    * @param origemX linha da Casa de origem.
