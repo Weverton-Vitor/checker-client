@@ -2,18 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c264c6e1-dacf-4485-86ea-2b29492583da" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Pieces/Color.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game/Square.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Square.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Table.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pieces/Cor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pieces/Dame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pieces/Dame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pieces/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pieces/Pawn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pieces/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pieces/Piece.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Protocol/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Protocol/Message.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Screens/TableGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Screens/TableGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Screens/JanelaPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Screens/JanelaPrincipal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Screens/MainScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Screens/MainScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/MovePieceCallable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/MovePieceCallable.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,9 +101,9 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.MainScreen" />
       <item itemvalue="Application.MainScreen (4)" />
       <item itemvalue="Application.MainScreen (5)" />
+      <item itemvalue="Application.MainScreen" />
       <item itemvalue="Application.Screens.MainScreen" />
       <item itemvalue="Application.Teste" />
     </list>
@@ -146,22 +142,73 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Screens/SquareGUI.java</url>
-          <line>82</line>
-          <option name="timeStamp" value="14" />
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/Screens/JanelaPrincipal.java</url>
+          <line>91</line>
+          <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Screens/SquareGUI.java</url>
-          <line>78</line>
-          <option name="timeStamp" value="15" />
+          <url>file://$PROJECT_DIR$/src/client/MovePieceCallable.java</url>
+          <line>53</line>
+          <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Screens/SquareGUI.java</url>
-          <line>31</line>
-          <option name="timeStamp" value="17" />
+          <url>file://$PROJECT_DIR$/src/client/Client.java</url>
+          <line>57</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Screens/JanelaPrincipal.java</url>
+          <line>42</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/client/Client.java</url>
+          <line>75</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/client/WaitMoveCallable.java</url>
+          <line>34</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/client/MovePieceCallable.java</url>
+          <line>52</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Screens/JanelaPrincipal.java</url>
+          <line>103</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Screens/JanelaPrincipal.java</url>
+          <line>140</line>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/client/Client.java</url>
+          <line>61</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/client/WaitMoveCallable.java</url>
+          <line>35</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Screens/JanelaPrincipal.java</url>
+          <line>41</line>
+          <option name="timeStamp" value="33" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="java.util.concurrent.ExecutionException" memberName="cause" />
+        <PinnedItemInfo parentTag="Protocol.Message" memberName="table" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
 </project>

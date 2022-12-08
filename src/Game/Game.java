@@ -13,8 +13,8 @@ public class Game {
 
   private Table tabuleiro;
 
-  public Game() {
-    tabuleiro = new Table();
+  public Game(boolean isTurn) {
+    tabuleiro = new Table(isTurn);
     criarPecas();
   }
   
@@ -73,5 +73,9 @@ public class Game {
    */
   public Table getTable() {
     return tabuleiro;
+  }
+
+  public void setTabuleiro(Table tabuleiro) {
+    this.tabuleiro = tabuleiro;
   }
 }

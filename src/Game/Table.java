@@ -33,7 +33,7 @@ public class Table implements Serializable {
     this.stoledPiece = null;
   }
 
-  public Table() {
+  public Table(boolean isTurn) {
     squares = new Square[8][8];
     for (int x = 0; x < 8; x++) {
       for (int y = 0; y < 8; y++) {
@@ -41,6 +41,8 @@ public class Table implements Serializable {
         squares[x][y] = square;
       }
     }
+
+    this.blackRound = isTurn;
   }
   /**
    * @param x linha

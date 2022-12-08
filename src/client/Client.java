@@ -1,18 +1,20 @@
 package client;
 
+import Game.Game;
+import Game.Table;
+import Game.Square;
 import Pieces.Piece;
 import Protocol.Message;
 
 import java.io.*;
 import java.net.Socket;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import java.util.concurrent.*;
 
 public class Client {
   private String color;
   private String codeSession;
+
+  private Semaphore waitToPlay;
 
   private Socket socket;
 
@@ -21,10 +23,11 @@ public class Client {
   private ExecutorService pool;
 
   public Client() throws IOException {
-    this.socket = new Socket("127.0.0.1", 54323);
+    this.socket = new Socket("127.0.0.1", 8888);
     this.out = new ObjectOutputStream(this.socket.getOutputStream());
     this.in = new ObjectInputStream(this.socket.getInputStream());
     this.pool = Executors.newCachedThreadPool();
+    this.waitToPlay = new Semaphore(1, true);
   }
 
   public void connectSession(String code) throws ExecutionException, InterruptedException {
@@ -49,11 +52,30 @@ public class Client {
 
   }
 
-  public void move(int origemX, int origemY, int destinoX, int destinoY) throws ExecutionException, InterruptedException {
-    MovePieceCallable task = new MovePieceCallable(out, in, this.codeSession, origemX, origemY, destinoX, destinoX); // task callable que retorna o código da sala
+  public Table move(int origemX, int origemY, int destinoX, int destinoY, Table oldTable) throws ExecutionException, InterruptedException {
+//    this.waitToPlay.acquire();
+    System.out.println("Cor: " + this.color);
+    MovePieceCallable task = new MovePieceCallable(out, in, this.codeSession, origemX, origemY, destinoX, destinoY, this.color); // task callable que retorna o código da sala
     Future future = this.pool.submit(task);
-    Message response = (Message) future.get(); // Obtendo a mensagem do servidor
+    Message response = (Message) future.get();
+//    System.out.println(response.getAction());
+    if (response.getAction().equals("WRONG_TURN")) { // Em caso de turno errado o tabuleiro sem alterações é retornado
+      System.out.println("turno errado");
+      return oldTable;
+    }
+
+    
+
+    System.out.println("Turno certo");
+    return response.getTable();
+  }
+
+  public Table waitMove() throws ExecutionException, InterruptedException {
+    WaitMoveCallable waitTask = new WaitMoveCallable(this.getOut(), this.getIn(), this.codeSession, this.color);
+    Future future = this.pool.submit(waitTask);
+    Message response = (Message) future.get();
     System.out.println(response.getTable());
+    return  response.getTable();
   }
 
 
@@ -95,4 +117,26 @@ public class Client {
   public void setColor(String color) {
     this.color = color;
   }
+
+  public ObjectOutputStream getOut() {
+    return out;
+  }
+
+  public ObjectInputStream getIn() {
+    return in;
+  }
+
+  public ExecutorService getPool() {
+    return pool;
+  }
+
+  public Semaphore getWaitToPlay() {
+    return waitToPlay;
+  }
+
+  public void setWaitToPlay(Semaphore waitToPlay) {
+    this.waitToPlay = waitToPlay;
+  }
 }
+
+
