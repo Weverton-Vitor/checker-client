@@ -3,12 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="c264c6e1-dacf-4485-86ea-2b29492583da" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/imagens/dama_branca.png" beforeDir="false" afterPath="$PROJECT_DIR$/imagens/dama_branca.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/imagens/dama_vermelha.png" beforeDir="false" afterPath="$PROJECT_DIR$/imagens/dama_vermelha.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/imagens/pedra_branca.png" beforeDir="false" afterPath="$PROJECT_DIR$/imagens/pedra_branca.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/imagens/pedra_vermelha.png" beforeDir="false" afterPath="$PROJECT_DIR$/imagens/pedra_vermelha.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Table.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Protocol/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Protocol/Message.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Screens/JanelaPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Screens/JanelaPrincipal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Screens/MainScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Screens/MainScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/CreateSessionCallable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/CreateSessionCallable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/client/MovePieceCallable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/MovePieceCallable.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
