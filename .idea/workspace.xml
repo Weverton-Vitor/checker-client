@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c264c6e1-dacf-4485-86ea-2b29492583da" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Table.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Protocol/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Protocol/Message.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Screens/JanelaPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Screens/JanelaPrincipal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Screens/MainScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Screens/MainScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/MovePieceCallable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/MovePieceCallable.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +30,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "/home/aldebaran/gitreps/lp2/CheckersServer"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\projectsjava\CheckerClient\imagens" />
@@ -144,7 +146,7 @@
       <breakpoints>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/Screens/JanelaPrincipal.java</url>
-          <line>91</line>
+          <line>99</line>
           <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -156,11 +158,6 @@
           <url>file://$PROJECT_DIR$/src/client/Client.java</url>
           <line>57</line>
           <option name="timeStamp" value="23" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Screens/JanelaPrincipal.java</url>
-          <line>42</line>
-          <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/client/Client.java</url>
@@ -179,12 +176,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Screens/JanelaPrincipal.java</url>
-          <line>103</line>
+          <line>111</line>
           <option name="timeStamp" value="29" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Screens/JanelaPrincipal.java</url>
-          <line>140</line>
+          <line>148</line>
           <option name="timeStamp" value="30" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

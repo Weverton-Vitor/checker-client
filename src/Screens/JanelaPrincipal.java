@@ -38,11 +38,13 @@ public class JanelaPrincipal extends JFrame {
     @Override
     public void run() {
       try {
-          Table newTable = this.player.waitMove();
-        System.out.println(newTable.equals(jogo.getTable()));
+        Table newTable = this.player.waitMove();
+//      System.out.println(newTable.equals(jogo.getTable()));
+        if (newTable != null) {
           jogo.setTabuleiro(newTable);
           atualizar();
           System.out.println("pediu");
+        }
       } catch (ExecutionException e) {
         throw new RuntimeException(e);
       } catch (InterruptedException e) {
@@ -67,6 +69,12 @@ public class JanelaPrincipal extends JFrame {
    * @param casaClicada Casa que o jogador clicou.
    */
   public void reagir(SquareGUI casaClicada) throws ExecutionException, InterruptedException {
+    if (
+      casaClicada.getCorPeca() == 0 && !this.player.getColor().equals("WHITE") ||
+        casaClicada.getCorPeca() == 1 && !this.player.getColor().equals("BLACK")) {
+      return;
+    }
+
     if (primeiroClique) {
       if (casaClicada.possuiPeca()) {
         casaClicadaOrigem = casaClicada;
