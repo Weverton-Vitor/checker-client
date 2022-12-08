@@ -51,13 +51,8 @@ public class LoadingScreen extends JFrame {
         System.out.println(player);
         this.codeLable.setText("Código Da Sala: " + player.getCodeSession());
 
-
-        JLabel background=new JLabel("", new ImageIcon("tumblr_mwg7x2Kfhg1rat0tqo1_500.gif"), JLabel.CENTER);
-        background.setBounds(0, 0, 1200, 700);
-        add(background);
-
         this.player = player;
-//        this.setContentPane(this.loadingScreen);
+        this.setContentPane(this.loadingScreen);
         this.setSize(1260,760);
         this.setTitle("Dama Online");
         this.setVisible(true);
