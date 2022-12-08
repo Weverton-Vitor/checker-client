@@ -1,12 +1,17 @@
 package Screens;
 
 import Game.Game;
+import Game.Table;
+import Protocol.Message;
 import client.Client;
+import client.WaitMoveCallable;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 /**
  * Tela do jogo.
@@ -17,9 +22,41 @@ import java.util.concurrent.ExecutionException;
  */
 public class JanelaPrincipal extends JFrame {
 
+
+  class WaitTask extends Thread {
+
+    private Client player;
+    private Game jogo;
+
+
+
+    public WaitTask(Client player, Game jogo) {
+      this.jogo = jogo;
+      this.player = player;
+    }
+
+    @Override
+    public void run() {
+      try {
+          Table newTable = this.player.waitMove();
+        System.out.println(newTable.equals(jogo.getTable()));
+          jogo.setTabuleiro(newTable);
+          atualizar();
+          System.out.println("pediu");
+      } catch (ExecutionException e) {
+        throw new RuntimeException(e);
+      } catch (InterruptedException e) {
+        throw new RuntimeException(e);
+      }
+
+    }
+  }
+
   private Game jogo;
 
   private Client player;
+  private boolean isTurn;
+
   private boolean primeiroClique;
   private SquareGUI casaClicadaOrigem;
   private SquareGUI casaClicadaDestino;
@@ -42,16 +79,32 @@ public class JanelaPrincipal extends JFrame {
       }
     }
     else {
+//      player.getWaitToPlay().acquire();
+
       casaClicadaDestino = casaClicada;
 
-      this.player.move(casaClicadaOrigem.getPosicaoX(), casaClicadaOrigem.getPosicaoY(),
-              casaClicadaDestino.getPosicaoX(), casaClicadaDestino.getPosicaoY());
 
-      jogo.moverPeca(casaClicadaOrigem.getPosicaoX(), casaClicadaOrigem.getPosicaoY(),
-              casaClicadaDestino.getPosicaoX(), casaClicadaDestino.getPosicaoY());
+      Table newTable = this.player.move(casaClicadaOrigem.getPosicaoX(), casaClicadaOrigem.getPosicaoY(),
+              casaClicadaDestino.getPosicaoX(), casaClicadaDestino.getPosicaoY(), jogo.getTable());
+
+
+//
+      System.out.println(newTable.equals(jogo.getTable()));
+
+      jogo.setTabuleiro(newTable);
+
+//      jogo.moverPeca(casaClicadaOrigem.getPosicaoX(), casaClicadaOrigem.getPosicaoY(),
+//              casaClicadaDestino.getPosicaoX(), casaClicadaDestino.getPosicaoY());
       casaClicadaOrigem.atenuar();
       primeiroClique = true;
       atualizar();
+
+      if (this.jogo.getTable().isBlackRound() && this.player.getColor().equals("WHITE") || !this.jogo.getTable().isBlackRound() && this.player.getColor().equals("BLACK")) { // Esperando a joga do adversário
+        System.out.println("Adversario vai jogar");
+        (new WaitTask(this.player, this.jogo)).start();
+
+      }
+
     }
   }
   
@@ -59,19 +112,20 @@ public class JanelaPrincipal extends JFrame {
   /**
    * Construtor da classe.
    */
-  public JanelaPrincipal(Client player) {
+  public JanelaPrincipal(Client player, boolean isTurn) throws IOException, ClassNotFoundException, ExecutionException, InterruptedException {
     this.player = player;
     initComponents();
 
     this.primeiroClique = true;
     this.casaClicadaOrigem = null;
     this.casaClicadaDestino = null;
-    criarNovoJogo();
+    this.isTurn = isTurn;
+    criarNovoJogo(isTurn);
 
     // configura action listener para o menu novo
     menuNovo.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        criarNovoJogo();
+        criarNovoJogo(isTurn);
       }
     });
 
@@ -83,6 +137,12 @@ public class JanelaPrincipal extends JFrame {
       }
     });
 
+    if (this.jogo.getTable().isBlackRound() && this.player.getColor().equals("WHITE") || !this.jogo.getTable().isBlackRound() && this.player.getColor().equals("BLACK")) { // Esperando a joga do adversário
+      System.out.println("Adversario vai jogar");
+      (new WaitTask(this.player, this.jogo)).start();
+
+    }
+
     super.setLocationRelativeTo(null);
     super.setVisible(true);
     super.pack();
@@ -93,12 +153,12 @@ public class JanelaPrincipal extends JFrame {
   /**
    * Cria um novo jogo e atualiza o tabuleiro gr�fico.
    */
-  private void criarNovoJogo() {
+  private void criarNovoJogo(boolean isTurn) {
     if(!primeiroClique) {
       primeiroClique = true;
       casaClicadaOrigem.atenuar();
     }         
-    jogo = new Game();
+    jogo = new Game(isTurn);
     atualizar();
   }
 
@@ -277,7 +337,17 @@ public class JanelaPrincipal extends JFrame {
     /* Create and display the form */
     java.awt.EventQueue.invokeLater(new Runnable() {
       public void run() {
-        new JanelaPrincipal(player).setVisible(true);
+        try {
+          new JanelaPrincipal(player, true).setVisible(true);
+        } catch (IOException e) {
+          throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+          throw new RuntimeException(e);
+        } catch (ExecutionException e) {
+          throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+          throw new RuntimeException(e);
+        }
       }
     });
   }

@@ -19,9 +19,10 @@ public class MovePieceCallable implements Callable {
     private int origemY;
     private int destinoX;
     private int destinoY;
+    private String color;
 
 
-    public MovePieceCallable(ObjectOutputStream out, ObjectInputStream in, String codeSession, int origemX, int origemY, int destinoX, int destinoY) {
+    public MovePieceCallable(ObjectOutputStream out, ObjectInputStream in, String codeSession, int origemX, int origemY, int destinoX, int destinoY, String color) {
         this.out = out;
         this.in = in;
         this.codeSession = codeSession;
@@ -29,6 +30,7 @@ public class MovePieceCallable implements Callable {
         this.origemY = origemY;
         this.destinoX = destinoX;
         this.destinoY = destinoY;
+        this.color = color;
     }
 
 
@@ -36,15 +38,17 @@ public class MovePieceCallable implements Callable {
     public Object call() throws Exception {
         try {
             System.out.println("Movendo");
+            System.out.println(origemX + " " + origemY + " " + destinoX + " " +destinoY);
 
             // Conecatando ao servidor
 //            ObjectOutputStream out = new ObjectOutputStream(playerSocket.getOutputStream());
 //            ObjectInputStream in = new ObjectInputStream(playerSocket.getInputStream());
             // Criando obejto de mensagem com a ação de criar uma sala
-            Message msgConnection = new Message(origemX, origemY, destinoX, destinoX);
+            Message msgConnection = new Message(origemX, origemY, destinoX, destinoY);
             msgConnection.setAction("MOVE");
             msgConnection.setCodeSession(this.codeSession);
-            System.out.println(this.codeSession);
+            msgConnection.setColor(this.color);
+//            System.out.println(this.codeSession);
             out.writeObject(msgConnection);
             Message response = (Message) in.readObject();
             return response;
