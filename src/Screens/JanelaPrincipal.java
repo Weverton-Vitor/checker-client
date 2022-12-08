@@ -124,6 +124,7 @@ public class JanelaPrincipal extends JFrame {
     this.player = player;
     initComponents();
 
+    this.setTitle("Dama Online");
     this.primeiroClique = true;
     this.casaClicadaOrigem = null;
     this.casaClicadaDestino = null;
@@ -294,12 +295,15 @@ public class JanelaPrincipal extends JFrame {
     lbl_h.setText("7");
     pnlColunas.add(lbl_h);
 
-    menuArquivo.setText("Jogo");
+    if (this.player.getColor().equals("WHITE"))
+      menuArquivo.setText("Cor: Branco");
+    else
+      menuArquivo.setText("Cor: Vermelho");
 
-    menuNovo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
-    menuNovo.setText("Novo");
-    menuArquivo.add(menuNovo);
-    menuArquivo.add(jSeparator1);
+//    menuNovo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+//    menuNovo.setText("Novo");
+//    menuArquivo.add(menuNovo);
+//    menuArquivo.add(jSeparator1);
 
     menuSair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
     menuSair.setText("Sair");

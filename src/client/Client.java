@@ -78,6 +78,13 @@ public class Client {
     return  response.getTable();
   }
 
+  public void waitConnection() throws ExecutionException, InterruptedException {
+    WaitConnectionCallable waitTask = new WaitConnectionCallable(this.getOut(), this.getIn());
+    Future future = this.pool.submit(waitTask);
+    Message response = (Message) future.get();
+    System.out.println(response.getTable());
+  }
+
 
 
 //  public Client() throws IOException, ClassNotFoundException, ExecutionException, InterruptedException {
@@ -137,6 +144,8 @@ public class Client {
   public void setWaitToPlay(Semaphore waitToPlay) {
     this.waitToPlay = waitToPlay;
   }
+
+
 }
 
 
