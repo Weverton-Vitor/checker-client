@@ -38,27 +38,34 @@ public class JanelaPrincipal extends JFrame {
     @Override
     public void run() {
       try {
-        Table newTable = this.player.waitMove();
-        while(newTable.equals(windows.jogo.getTable())){
-          System.out.println("loop");
-  //      System.out.println(newTable.equals(jogo.getTable()));
-          if (newTable != null) {
-            newTable = this.player.waitMove();
-            System.out.println("pediu");
-          }
-        }
+        boolean confirmTurn;
+        do {
+          Table newTable = this.player.waitMove();
 
-        windows.jogo.setTabuleiro(newTable);
-        windows.isListening = false;
+          // Verificando se o turno continua o mesmo
+          confirmTurn = newTable.isBlackRound() && windows.jogo.getTable().isBlackRound() || !newTable.isBlackRound() && !windows.jogo.getTable().isBlackRound();
+          System.out.println("Turno continua igual: " + confirmTurn);
+            if (newTable != null) {
+              windows.jogo.setTabuleiro(newTable);
+              windows.isListening = false;
 
-        // Atualizando o tabuleiro
-        atualizar();
+              // Atualizando o tabuleiro
+              atualizar();
 
-        // Atualizando o label do turno
-        if (windows.jogo.getTable().isBlackRound() && this.player.getColor().equals("BLACK") || !windows.jogo.getTable().isBlackRound() && this.player.getColor().equals("WHITE"))
-          windows.turnoLabel.setText("Agora é sua vez!!");
+              // Atualizando o label do turno
+              if (windows.jogo.getTable().isBlackRound() && this.player.getColor().equals("BLACK") || !windows.jogo.getTable().isBlackRound() && this.player.getColor().equals("WHITE") )
+                windows.turnoLabel.setText("Agora é sua vez!!");
 
+              System.out.println("pediu");
 
+    //          if (newTable.equals(windows.jogo.getTable())){
+    //            (new WaitTask(this.player, windows)).start();
+    //          }
+
+            }
+            // Limpando o listener
+            this.windows.listener = null;
+          } while (confirmTurn);
       } catch (ExecutionException e) {
         throw new RuntimeException(e);
       } catch (InterruptedException e) {
@@ -77,6 +84,7 @@ public class JanelaPrincipal extends JFrame {
   private SquareGUI casaClicadaOrigem;
   private SquareGUI casaClicadaDestino;
   private boolean isListening = false;
+  private WaitTask listener;
 
   /**
    * Responde aos cliques realizados no tabuleiro.
@@ -142,7 +150,11 @@ public class JanelaPrincipal extends JFrame {
 
         // Iniciando a escuta para pegar o novo tabuleiro
         System.out.println("Adversario vai jogar");
-        (new WaitTask(this.player, this)).start();
+        // Só escuta um vez
+        if (this.listener == null) {
+          this.listener = new WaitTask(this.player, this);
+          this.listener.start();
+        }
       }
     }
   }
@@ -193,7 +205,12 @@ public class JanelaPrincipal extends JFrame {
 
       // Iniciando a escuta para pegar o novo tabuleiro
       System.out.println("Adversario vai jogar");
-      (new WaitTask(this.player, this)).start();
+
+      // Só escuta uma vez
+      if (this.listener == null) {
+        this.listener = new WaitTask(this.player, this);
+        this.listener.start();
+      }
 
     }
 
