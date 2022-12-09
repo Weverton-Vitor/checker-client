@@ -43,7 +43,7 @@
         </constraints>
         <properties>
           <background color="-2231297"/>
-          <text value="Cria sala"/>
+          <text value="Criar sala"/>
         </properties>
       </component>
       <component id="8ad96" class="javax.swing.JLabel">
