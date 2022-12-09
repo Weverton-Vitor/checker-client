@@ -26,23 +26,33 @@ public class JanelaPrincipal extends JFrame {
   class WaitTask extends Thread {
 
     private Client player;
-    private Game jogo;
+    private JanelaPrincipal windows;
 
 
 
-    public WaitTask(Client player, Game jogo) {
-      this.jogo = jogo;
+    public WaitTask(Client player, JanelaPrincipal windows) {
+      this.windows = windows;
       this.player = player;
     }
 
     @Override
     public void run() {
       try {
-          Table newTable = this.player.waitMove();
-        System.out.println(newTable.equals(jogo.getTable()));
-          jogo.setTabuleiro(newTable);
+        Table newTable = this.player.waitMove();
+//      System.out.println(newTable.equals(jogo.getTable()));
+        if (newTable != null) {
+          windows.jogo.setTabuleiro(newTable);
+          windows.isListening = false;
+
+          // Atualizando o tabuleiro
           atualizar();
+
+          // Atualizando o label do turno
+          if (windows.jogo.getTable().isBlackRound() && this.player.getColor().equals("BLACK") || !windows.jogo.getTable().isBlackRound() && this.player.getColor().equals("WHITE") )
+            windows.turnoLabel.setText("Agora é sua vez!!");
+
           System.out.println("pediu");
+        }
       } catch (ExecutionException e) {
         throw new RuntimeException(e);
       } catch (InterruptedException e) {
@@ -60,13 +70,20 @@ public class JanelaPrincipal extends JFrame {
   private boolean primeiroClique;
   private SquareGUI casaClicadaOrigem;
   private SquareGUI casaClicadaDestino;
-  
+  private boolean isListening = false;
+
   /**
    * Responde aos cliques realizados no tabuleiro.
    * 
    * @param casaClicada Casa que o jogador clicou.
    */
   public void reagir(SquareGUI casaClicada) throws ExecutionException, InterruptedException {
+    if (
+      casaClicada.getCorPeca() == 0 && !this.player.getColor().equals("WHITE") ||
+        casaClicada.getCorPeca() == 1 && !this.player.getColor().equals("BLACK")) {
+      return;
+    }
+
     if (primeiroClique) {
       if (casaClicada.possuiPeca()) {
         casaClicadaOrigem = casaClicada;
@@ -83,28 +100,44 @@ public class JanelaPrincipal extends JFrame {
 
       casaClicadaDestino = casaClicada;
 
+      // Só mando a instrução para o servidor se for o turno do player
+      if (this.jogo.getTable().isBlackRound() && this.player.getColor().equals("BLACK") || !this.jogo.getTable().isBlackRound() && this.player.getColor().equals("WHITE")) {
 
-      Table newTable = this.player.move(casaClicadaOrigem.getPosicaoX(), casaClicadaOrigem.getPosicaoY(),
-              casaClicadaDestino.getPosicaoX(), casaClicadaDestino.getPosicaoY(), jogo.getTable());
+        Table newTable = this.player.move(casaClicadaOrigem.getPosicaoX(), casaClicadaOrigem.getPosicaoY(),
+                casaClicadaDestino.getPosicaoX(), casaClicadaDestino.getPosicaoY(), jogo.getTable());
 
+        System.out.println(newTable.equals(jogo.getTable()));
 
-//
-      System.out.println(newTable.equals(jogo.getTable()));
+        jogo.setTabuleiro(newTable);
 
-      jogo.setTabuleiro(newTable);
+  //      jogo.moverPeca(casaClicadaOrigem.getPosicaoX(), casaClicadaOrigem.getPosicaoY(),
+  //              casaClicadaDestino.getPosicaoX(), casaClicadaDestino.getPosicaoY());
 
-//      jogo.moverPeca(casaClicadaOrigem.getPosicaoX(), casaClicadaOrigem.getPosicaoY(),
-//              casaClicadaDestino.getPosicaoX(), casaClicadaDestino.getPosicaoY());
+      }
+
       casaClicadaOrigem.atenuar();
       primeiroClique = true;
       atualizar();
 
-      if (this.jogo.getTable().isBlackRound() && this.player.getColor().equals("WHITE") || !this.jogo.getTable().isBlackRound() && this.player.getColor().equals("BLACK")) { // Esperando a joga do adversário
+      // Só espera o tabuleiro uma e se não for o turno do player
+      if (!this.isListening && (this.jogo.getTable().isBlackRound() && this.player.getColor().equals("WHITE") || !this.jogo.getTable().isBlackRound() && this.player.getColor().equals("BLACK"))) { // Esperando a joga do adversário
+        // Agora o player vai começar a escutar
+        this.isListening = true;
+
+        // Ajustando as labels do player
+        this.turnoLabel.setText("");
+        this.jMenuBar1.removeAll();
+        if (this.player.getColor().equals("WHITE"))
+          menuArquivo.setText("Cor: Branco");
+        else
+          menuArquivo.setText("Cor: Vermelho");
+        this.jMenuBar1.add(this.menuArquivo);
+        this.jMenuBar1.add(this.turnoLabel);
+
+        // Iniciando a escuta para pegar o novo tabuleiro
         System.out.println("Adversario vai jogar");
-        (new WaitTask(this.player, this.jogo)).start();
-
+        (new WaitTask(this.player, this)).start();
       }
-
     }
   }
   
@@ -116,6 +149,7 @@ public class JanelaPrincipal extends JFrame {
     this.player = player;
     initComponents();
 
+    this.setTitle("Dama Online");
     this.primeiroClique = true;
     this.casaClicadaOrigem = null;
     this.casaClicadaDestino = null;
@@ -137,9 +171,23 @@ public class JanelaPrincipal extends JFrame {
       }
     });
 
-    if (this.jogo.getTable().isBlackRound() && this.player.getColor().equals("WHITE") || !this.jogo.getTable().isBlackRound() && this.player.getColor().equals("BLACK")) { // Esperando a joga do adversário
+    if (!this.isListening && this.jogo.getTable().isBlackRound() && this.player.getColor().equals("WHITE") || !this.jogo.getTable().isBlackRound() && this.player.getColor().equals("BLACK")) { // Esperando a joga do adversário
+      // Agora o player vai começar a escutar
+      this.isListening = true;
+
+      // Ajustando as labels do player
+      this.turnoLabel.setText("");
+      this.jMenuBar1.removeAll();
+      if (this.player.getColor().equals("WHITE"))
+        menuArquivo.setText("Cor: Branco");
+      else
+        menuArquivo.setText("Cor: Vermelho");
+      this.jMenuBar1.add(this.menuArquivo);
+      this.jMenuBar1.add(this.turnoLabel);
+
+      // Iniciando a escuta para pegar o novo tabuleiro
       System.out.println("Adversario vai jogar");
-      (new WaitTask(this.player, this.jogo)).start();
+      (new WaitTask(this.player, this)).start();
 
     }
 
@@ -196,6 +244,7 @@ public class JanelaPrincipal extends JFrame {
     tabuleiroGUI = new TableGUI(this);
     jMenuBar1 = new javax.swing.JMenuBar();
     menuArquivo = new javax.swing.JMenu();
+    turnoLabel = new javax.swing.JMenu();
     menuNovo = new javax.swing.JMenuItem();
     jSeparator1 = new javax.swing.JPopupMenu.Separator();
     menuSair = new javax.swing.JMenuItem();
@@ -286,19 +335,22 @@ public class JanelaPrincipal extends JFrame {
     lbl_h.setText("7");
     pnlColunas.add(lbl_h);
 
-    menuArquivo.setText("Jogo");
+    if (this.player.getColor().equals("WHITE"))
+      menuArquivo.setText("Cor: Branco");
+    else
+      menuArquivo.setText("Cor: Vermelho");
 
-    menuNovo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
-    menuNovo.setText("Novo");
-    menuArquivo.add(menuNovo);
-    menuArquivo.add(jSeparator1);
+//    menuNovo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+//    menuNovo.setText("Novo");
+//    menuArquivo.add(menuNovo);
+//    menuArquivo.add(jSeparator1);
 
     menuSair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
     menuSair.setText("Sair");
     menuArquivo.add(menuSair);
 
     jMenuBar1.add(menuArquivo);
-
+    jMenuBar1.add(turnoLabel);
     setJMenuBar(jMenuBar1);
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -372,6 +424,7 @@ public class JanelaPrincipal extends JFrame {
   private javax.swing.JLabel lbl_g;
   private javax.swing.JLabel lbl_h;
   private javax.swing.JMenu menuArquivo;
+  private javax.swing.JMenu turnoLabel;
   private javax.swing.JMenuItem menuNovo;
   private javax.swing.JMenuItem menuSair;
   private javax.swing.JPanel pnlColunas;

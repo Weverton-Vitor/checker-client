@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="c264c6e1-dacf-4485-86ea-2b29492583da" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/MovePieceCallable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/MovePieceCallable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Screens/JanelaPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Screens/JanelaPrincipal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Screens/LoadingScreen.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/Screens/LoadingScreen.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Screens/MainScreen.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/Screens/MainScreen.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Screens/MainScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Screens/MainScreen.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +32,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/aldebaran/gitreps/lp2/CheckersServer&quot;
+  }
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\projectsjava\CheckerClient\imagens" />
@@ -38,8 +48,8 @@
       <recent name="C:\projectsjava\CheckerClient\src\Pieces" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\projectsjava\CheckerClient\imagens" />
       <recent name="C:\projectsjava\CheckerClient\src\Screens" />
+      <recent name="C:\projectsjava\CheckerClient\imagens" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="Game" />
@@ -138,18 +148,13 @@
       <breakpoints>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/Screens/JanelaPrincipal.java</url>
-          <line>91</line>
+          <line>108</line>
           <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/client/Client.java</url>
           <line>57</line>
           <option name="timeStamp" value="23" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Screens/JanelaPrincipal.java</url>
-          <line>42</line>
-          <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/client/Client.java</url>
@@ -163,13 +168,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Screens/JanelaPrincipal.java</url>
-          <line>103</line>
+          <line>138</line>
           <option name="timeStamp" value="29" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Screens/JanelaPrincipal.java</url>
-          <line>140</line>
-          <option name="timeStamp" value="30" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/client/Client.java</url>
@@ -185,6 +185,16 @@
           <url>file://$PROJECT_DIR$/src/Screens/JanelaPrincipal.java</url>
           <line>41</line>
           <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Screens/JanelaPrincipal.java</url>
+          <line>43</line>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Screens/JanelaPrincipal.java</url>
+          <line>119</line>
+          <option name="timeStamp" value="35" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

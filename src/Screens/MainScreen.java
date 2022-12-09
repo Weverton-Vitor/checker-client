@@ -50,7 +50,7 @@ public class MainScreen extends JFrame{
                         player.connectSession(roomCode);
 //                        player.setWaitToPlay(new Semaphore(0, true)); // entra sem poder mover as peças
 
-                        final JanelaPrincipal loadingFrame = new JanelaPrincipal(player, false);
+                        final JanelaPrincipal playFrame = new JanelaPrincipal(player, false);
                         close();
                         System.out.println("Code: " + player.getCodeSession());
                     } else {
@@ -65,11 +65,6 @@ public class MainScreen extends JFrame{
                 } catch (ClassNotFoundException ex) {
                     throw new RuntimeException(ex);
                 }
-                // System.out.println("Enviando: " + roomCode);
-                // Message message = new Message();
-                // message.setAction("CONNECT_SESSION");
-                // message.setCodeSession(roomCode);
-                // player.
             }
         });
 
@@ -83,8 +78,7 @@ public class MainScreen extends JFrame{
                         player = new Client();
                         player.setColor("WHITE");
                         player.createSession();
-//                        player.setWaitToPlay(new Semaphore(1, true)); // entra podendo mover as peças
-                        final JanelaPrincipal loadingFrame = new JanelaPrincipal(player, false); // Comaça no turno das brancas
+                        final LoadingScreen loadingFrame = new LoadingScreen(player);
 
                         System.out.println("Code: " + player.getCodeSession());
                         close();
@@ -96,8 +90,6 @@ public class MainScreen extends JFrame{
                 } catch (ExecutionException ex) {
                     throw new RuntimeException(ex);
                 } catch (InterruptedException ex) {
-                    throw new RuntimeException(ex);
-                } catch (ClassNotFoundException ex) {
                     throw new RuntimeException(ex);
                 }
             }
