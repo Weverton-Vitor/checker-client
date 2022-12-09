@@ -39,20 +39,26 @@ public class JanelaPrincipal extends JFrame {
     public void run() {
       try {
         Table newTable = this.player.waitMove();
-//      System.out.println(newTable.equals(jogo.getTable()));
-        if (newTable != null) {
-          windows.jogo.setTabuleiro(newTable);
-          windows.isListening = false;
-
-          // Atualizando o tabuleiro
-          atualizar();
-
-          // Atualizando o label do turno
-          if (windows.jogo.getTable().isBlackRound() && this.player.getColor().equals("BLACK") || !windows.jogo.getTable().isBlackRound() && this.player.getColor().equals("WHITE") )
-            windows.turnoLabel.setText("Agora é sua vez!!");
-
-          System.out.println("pediu");
+        while(newTable.equals(windows.jogo.getTable())){
+          System.out.println("loop");
+  //      System.out.println(newTable.equals(jogo.getTable()));
+          if (newTable != null) {
+            newTable = this.player.waitMove();
+            System.out.println("pediu");
+          }
         }
+
+        windows.jogo.setTabuleiro(newTable);
+        windows.isListening = false;
+
+        // Atualizando o tabuleiro
+        atualizar();
+
+        // Atualizando o label do turno
+        if (windows.jogo.getTable().isBlackRound() && this.player.getColor().equals("BLACK") || !windows.jogo.getTable().isBlackRound() && this.player.getColor().equals("WHITE"))
+          windows.turnoLabel.setText("Agora é sua vez!!");
+
+
       } catch (ExecutionException e) {
         throw new RuntimeException(e);
       } catch (InterruptedException e) {
