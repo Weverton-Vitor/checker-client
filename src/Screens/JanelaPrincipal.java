@@ -16,6 +16,10 @@ import java.util.concurrent.Future;
 /**
  * Tela do jogo.
  * Responsável por reagir aos cliques feitos pelo jogador.
+ * @author Alefe de Lima
+ * @author Jose Alisson
+ * @author Matheus Yago
+ * @author Weverton Vitor
  * 
  */
 public class JanelaPrincipal extends JFrame {

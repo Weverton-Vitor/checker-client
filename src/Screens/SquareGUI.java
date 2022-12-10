@@ -14,7 +14,10 @@ import javax.swing.JButton;
 
 /**
  * Interface Grafica de uma Casa no tabuleiro do jogo.
- *
+ * @author Alefe de Lima
+ * @author Jose Alisson
+ * @author Matheus Yago
+ * @author Weverton Vitor
  */
 public class SquareGUI extends JButton {
 

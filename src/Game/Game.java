@@ -5,7 +5,10 @@ import Pieces.Pawn;
 
 /**
  * Armazena o tabuleiro e responsavel por posicionar as pecas.
- * 
+ * @author Alefe de Lima
+ * @author Jose Alisson
+ * @author Matheus Yago
+ * @author Weverton Vitor
  */
 public class Game {
 
