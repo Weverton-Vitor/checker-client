@@ -14,8 +14,6 @@ public class Client {
   private String color;
   private String codeSession;
 
-  private Semaphore waitToPlay;
-
   private Socket socket;
 
   private ObjectOutputStream out;
@@ -23,29 +21,39 @@ public class Client {
   private ExecutorService pool;
 
   public Client() throws IOException {
+    // Criando a conexão
     this.socket = new Socket("127.0.0.1", 8888);
+
+    // Obtendo os streams de dados
     this.out = new ObjectOutputStream(this.socket.getOutputStream());
     this.in = new ObjectInputStream(this.socket.getInputStream());
+
+    // Cada cliente tem um pool de threads
     this.pool = Executors.newCachedThreadPool();
-    this.waitToPlay = new Semaphore(1, true);
   }
 
+  // Conectar a uma sala
   public boolean connectSession(String code) throws ExecutionException, InterruptedException {
-    ConnectSessionCallable task = new ConnectSessionCallable(out, in, code); // task callable que retorna o código da sala
+    // task callable que retorna o código da sala
+    ConnectSessionCallable task = new ConnectSessionCallable(out, in, code);
     Future future = this.pool.submit(task);
     Message response = (Message) future.get(); // Obtendo a mensagem do servidor
 
+    // Sala inexistente
     if (response.getAction().equals("NOT_FOUND_SESSION")){
       return false;
     }
 
+    // Se a sala existir o código da sala é retornado
     setCodeSession(response.getCodeSession());
     setColor(response.getColor());
-    return  true;
+    return true;
   }
 
+  // Criar uma sala
   public void createSession() throws ExecutionException, InterruptedException {
-    CreateSessionCallable task = new CreateSessionCallable(out, in); // task callable que retorna o código da sala
+    // task callable que retorna o código da sala
+    CreateSessionCallable task = new CreateSessionCallable(out, in);
     Future future = this.pool.submit(task);
     Message response = (Message) future.get();
     // Obtendo a mensagem do servidor
@@ -54,28 +62,26 @@ public class Client {
 
   }
 
-  public void exitSession() {
-
-  }
-
+  // Envia a ção de movimento para o servidor
   public Table move(int origemX, int origemY, int destinoX, int destinoY, Table oldTable) throws ExecutionException, InterruptedException {
-//    this.waitToPlay.acquire();
     System.out.println("Cor: " + this.color);
-    MovePieceCallable task = new MovePieceCallable(out, in, this.codeSession, origemX, origemY, destinoX, destinoY, this.color); // task callable que retorna o código da sala
+    // task callable que retorna o novo tabuleiro
+    MovePieceCallable task = new MovePieceCallable(out, in, this.codeSession, origemX, origemY, destinoX, destinoY, this.color);
     Future future = this.pool.submit(task);
     Message response = (Message) future.get();
-//    System.out.println(response.getAction());
-    if (response.getAction().contains("WRONG")) { // Em caso de turno errado o tabuleiro sem alterações é retornado
+
+    // Em caso de turno errado o tabuleiro sem alterações é retornado
+    if (response.getAction().contains("WRONG")) {
       System.out.println("turno errado");
       return oldTable;
     }
 
-    
-
+    // Retorna o novo tabuleiro
     System.out.println("Turno certo");
     return response.getTable();
   }
 
+  // Espera pelo movimento do outro jogador
   public Table waitMove() throws ExecutionException, InterruptedException {
     WaitMoveCallable waitTask = new WaitMoveCallable(this.getOut(), this.getIn(), this.codeSession, this.color);
     Future future = this.pool.submit(waitTask);
@@ -84,6 +90,7 @@ public class Client {
     return  response.getTable();
   }
 
+  // Espera outro jogador se conectar a sala
   public void waitConnection() throws ExecutionException, InterruptedException {
     WaitConnectionCallable waitTask = new WaitConnectionCallable(this.getOut(), this.getIn());
     Future future = this.pool.submit(waitTask);
@@ -91,29 +98,6 @@ public class Client {
     System.out.println(response.getTable());
   }
 
-
-
-//  public Client() throws IOException, ClassNotFoundException, ExecutionException, InterruptedException {
-//    // Ao criar um client/player uma sala é criada automaticamente junto com sua conexão com o servidor
-//    ExecutorService executor = Executors.newCachedThreadPool();
-//    CreateSessionCallable task = new CreateSessionCallable(this); // task callable que retorna o código da sala
-//    Future future = executor.submit(task);
-//    Message response = (Message) future.get(); // Obtendo a mensagem do servidor
-//    setCodeSession(response.getCodeSession());
-//
-////    task.start();
-//  }
-
-//  public Client(String codeSession) throws ExecutionException, InterruptedException {
-//    this.codeSession = codeSession;
-//
-//    ExecutorService executor = Executors.newCachedThreadPool();
-//    ConnectSessionCallable task = new ConnectSessionCallable(this, this.codeSession); // task callable que retorna o código da sala
-//    Future future = executor.submit(task);
-//    Message response = (Message) future.get(); // Obtendo a mensagem do servidor
-////    setCodeSession(response.getCodeSession());
-//    System.out.println(response.getAction());
-//  }
 
   public String getCodeSession() {
     return codeSession;
@@ -141,14 +125,6 @@ public class Client {
 
   public ExecutorService getPool() {
     return pool;
-  }
-
-  public Semaphore getWaitToPlay() {
-    return waitToPlay;
-  }
-
-  public void setWaitToPlay(Semaphore waitToPlay) {
-    this.waitToPlay = waitToPlay;
   }
 
 

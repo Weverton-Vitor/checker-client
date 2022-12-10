@@ -26,12 +26,8 @@ public class WaitMoveCallable implements Callable {
     @Override
     public Object call() throws Exception {
         try {
-//            Message msgConnection = new Message();
-//            msgConnection.setAction("WAIT_MOVE");
-//            msgConnection.setCodeSession(this.codeSession);
-//            msgConnection.setColor(this.color);
-//            System.out.println("Sessão: " + this.codeSession);
-//            out.writeObject(msgConnection);
+
+            // Abrindo o stream de escuta
             Message response = (Message) in.readObject();
             return response;
         } catch (IOException | ClassNotFoundException e) {

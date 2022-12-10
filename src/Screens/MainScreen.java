@@ -25,48 +25,54 @@ public class MainScreen extends JFrame{
     private Client player;
 
     public MainScreen() {
+        // configurando a tela
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setTitle("Dama Online");
-
         this.entrarButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         this.criaSalaButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
-//        this.entrarButton.setBorder(new Border());
-
+        // Lendo os dados do input do código da sala
         codeTextField.addKeyListener(new KeyAdapter() {
             @Override
-            public void keyReleased(KeyEvent e) {
+            public void keyReleased(KeyEvent e) { // Tecla liberada
                 super.keyTyped(e);
+                // limpando o label de erro
                 erroLabel.setText(" ");
                 roomCode = codeTextField.getText();
             }
         });
 
+        // Evento de click para entrar na sala
         entrarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
+                    // Cria o cliente não existir
                     if (player == null){ // Matém a mesma conexão
                         player = new Client();
-
                     }
 
+                    // Cor padrão preta para o segundo jogador
                     player.setColor("BLACK");
                     boolean isConnected = player.connectSession(roomCode);
-                    System.out.println(isConnected);
+
+                    // Validando a conexão
                     if (isConnected) {
                         // player.setWaitToPlay(new Semaphore(0, true)); // entra sem poder mover as peças
+
+                        // Nova tela do tabuleiro
                         final JanelaPrincipal playFrame = new JanelaPrincipal(player, false);
-                        close();
+                        close(); // Fechando a tela antiga
                         System.out.println("Code: " + player.getCodeSession());
                     } else {
-                            erroLabel.setText("Erro ao se conectar com a sala: " + roomCode);
-
-                        if (roomCode.equals(""))
+                        // Setando o erro caso a sala não exista
+                        erroLabel.setText("Erro ao se conectar com a sala: " + roomCode);
+                        if (roomCode.equals("")) {
                             erroLabel.setText("           Digite o código de uma sala " + roomCode);
+                        }
 
-                            erroLabel.setVisible(true);
-//                            updateScreen();
+                        erroLabel.setVisible(true);
+
                     }
 
                 } catch (IOException ex) {
@@ -81,20 +87,21 @@ public class MainScreen extends JFrame{
             }
         });
 
-
+        // Evento de click para criar uma sala
         criaSalaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Click");
+//                System.out.println("Click");
                 try {
-                    if (player == null){ // Criando a primera sala ao entrar no jogo
+                    if (player == null){ // Criando a primera sala ao entrar no jogo e criando um cliente também
                         player = new Client();
-                        player.setColor("WHITE");
+                        player.setColor("WHITE"); // Cor padrão para jogadores que criam uma sala
                         player.createSession();
-                        final LoadingScreen loadingFrame = new LoadingScreen(player);
 
+                        // Abrindo a nova tela de espera por outro jogador
+                        final LoadingScreen loadingFrame = new LoadingScreen(player);
                         System.out.println("Code: " + player.getCodeSession());
-                        close();
+                        close();// Fechando a antiga tela
                     } else {
                         player.createSession();
                     }
@@ -110,6 +117,7 @@ public class MainScreen extends JFrame{
     }
 
     public static void main(String[] args) {
+        // Inciando a tela de inicio
         MainScreen mainScreen = new MainScreen();
         mainScreen.setContentPane(mainScreen.panelMain);
         mainScreen.setSize(1260,760);
@@ -119,13 +127,8 @@ public class MainScreen extends JFrame{
         mainScreen.setLayout(mainScreen.getLayout());
     }
 
-    public void close(){
+    public void close(){ // fecha a tela atual
         this.dispose();
-    }
-
-    public void updateScreen(){
-        this.repaint();
-        this.validate();
     }
 
 }

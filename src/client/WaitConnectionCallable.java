@@ -20,7 +20,7 @@ public class WaitConnectionCallable implements Callable {
     @Override
     public Object call() throws Exception {
         try {
-            // Criando obejto de mensagem com a ação de criar uma sala
+            // Abrindo o stream de entranda para esperar outro jogador
             Message response = (Message) in.readObject();
             System.out.println(response.getAction());
             return response;
