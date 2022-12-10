@@ -18,7 +18,7 @@ public class Square implements Serializable {
   }
 
   /**
-   * @param peca a Pe�a a ser posicionada nesta Casa.
+   * @param peca a Peçaa a ser posicionada nesta Casa.
    */
   public void putPiece(Piece peca) {
     this.peca = peca;
@@ -63,7 +63,7 @@ public class Square implements Serializable {
   }
 
   /**
-   * @return true se existe uma pe�a nesta casa, caso contrario false.
+   * @return true se existe uma peça nesta casa, caso contrario false.
    */
   public boolean hasPiece() {
     return peca != null;

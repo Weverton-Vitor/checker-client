@@ -6,8 +6,6 @@ import Pieces.Pawn;
 /**
  * Armazena o tabuleiro e responsavel por posicionar as pecas.
  * 
- * @author Alan Moraes &lt;alan@ci.ufpb.br&gt;
- * @author Leonardo Villeth &lt;lvilleth@cc.ci.ufpb.br&gt;
  */
 public class Game {
 
