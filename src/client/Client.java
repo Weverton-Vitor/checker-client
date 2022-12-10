@@ -30,12 +30,18 @@ public class Client {
     this.waitToPlay = new Semaphore(1, true);
   }
 
-  public void connectSession(String code) throws ExecutionException, InterruptedException {
+  public boolean connectSession(String code) throws ExecutionException, InterruptedException {
     ConnectSessionCallable task = new ConnectSessionCallable(out, in, code); // task callable que retorna o código da sala
     Future future = this.pool.submit(task);
     Message response = (Message) future.get(); // Obtendo a mensagem do servidor
+
+    if (response.getAction().equals("NOT_FOUND_SESSION")){
+      return false;
+    }
+
     setCodeSession(response.getCodeSession());
     setColor(response.getColor());
+    return  true;
   }
 
   public void createSession() throws ExecutionException, InterruptedException {

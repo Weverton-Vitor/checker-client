@@ -18,8 +18,9 @@ public class MainScreen extends JFrame{
     private JPanel panelMain;
     private JButton entrarButton;
     private JButton criaSalaButton;
+    private JLabel erroLabel;
 
-    private String roomCode;
+    private String roomCode = "";
 
     private Client player;
 
@@ -36,6 +37,7 @@ public class MainScreen extends JFrame{
             @Override
             public void keyReleased(KeyEvent e) {
                 super.keyTyped(e);
+                erroLabel.setText(" ");
                 roomCode = codeTextField.getText();
             }
         });
@@ -44,18 +46,29 @@ public class MainScreen extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    if (player == null){
+                    if (player == null){ // Matém a mesma conexão
                         player = new Client();
-                        player.setColor("BLACK");
-                        player.connectSession(roomCode);
-//                        player.setWaitToPlay(new Semaphore(0, true)); // entra sem poder mover as peças
 
+                    }
+
+                    player.setColor("BLACK");
+                    boolean isConnected = player.connectSession(roomCode);
+                    System.out.println(isConnected);
+                    if (isConnected) {
+                        // player.setWaitToPlay(new Semaphore(0, true)); // entra sem poder mover as peças
                         final JanelaPrincipal playFrame = new JanelaPrincipal(player, false);
                         close();
                         System.out.println("Code: " + player.getCodeSession());
                     } else {
-                        //TODO criar sala depois de "logado"
+                            erroLabel.setText("Erro ao se conectar com a sala: " + roomCode);
+
+                        if (roomCode.equals(""))
+                            erroLabel.setText("           Digite o código de uma sala " + roomCode);
+
+                            erroLabel.setVisible(true);
+//                            updateScreen();
                     }
+
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 } catch (ExecutionException ex) {
@@ -108,6 +121,11 @@ public class MainScreen extends JFrame{
 
     public void close(){
         this.dispose();
+    }
+
+    public void updateScreen(){
+        this.repaint();
+        this.validate();
     }
 
 }
