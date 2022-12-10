@@ -65,7 +65,7 @@ public class Client {
     Future future = this.pool.submit(task);
     Message response = (Message) future.get();
 //    System.out.println(response.getAction());
-    if (response.getAction().equals("WRONG_TURN")) { // Em caso de turno errado o tabuleiro sem alterações é retornado
+    if (response.getAction().contains("WRONG")) { // Em caso de turno errado o tabuleiro sem alterações é retornado
       System.out.println("turno errado");
       return oldTable;
     }
